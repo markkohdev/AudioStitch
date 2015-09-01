@@ -1,0 +1,88 @@
+>> LoadPlay
+     9104384           1
+
+>> [filename,pathname] = uigetfile({'*.mp3;*.wav','Audio Files (*.mp3, *.wav)'},'What audio file would you like to open?');
+>> file = strcat(pathname,filename);
+>> [y,Fs] = audioread(file);
+>> size(y)
+
+ans =
+
+     9104384           1
+
+>> y2 = downsample(y,10);
+Undefined function 'downsample' for input arguments of type 'double'.
+ 
+>> type(y)
+Error using type
+Argument must contain a string.
+ 
+>> y2 = resample(y,2,1);
+Undefined function 'resample' for input arguments of type 'double'.
+ 
+>> downsample
+Undefined function or variable 'downsample'.
+ 
+>> which downsample
+'downsample' not found.
+>> LoadPlay
+     9104384           1
+
+>> plot(20*log10(abs(fftshift(fft(y(10000:10500,:))))));
+>> plot(20*log10(abs(fft(y(10000:10500,:)))));
+>> LoadPlay
+     9104384           1
+
+>> ls
+
+.             ..            LoadPlay.fig  LoadPlay.m    
+
+>> cd ../Audio/
+>> ls
+
+.            ..           Beggin.mp3   Blitz.mp3    Emotion.mp3  Lion.wav     Pulses.mp3   
+
+>> s = wavread(
+ s = wavread(
+             |
+Error: Expression or statement is incorrect--possibly unbalanced (, {, or [.
+ 
+>> [s,fs,bits] = wavread('Lion.wav');
+Warning: WAVREAD will be removed in a future release. Use AUDIOREAD instead. 
+> In wavread at 62 
+>> fs
+
+fs =
+
+       44100
+
+>> bits
+
+bits =
+
+    16
+
+>> size(s)
+
+ans =
+
+     9104384           1
+
+>> plot(s)
+>> soundsc(s,fs)
+>> size(s)/fs
+
+ans =
+
+  206.4486    0.0000
+
+>> plot(s(1:44100*10))
+>> zoom xon
+>> plot(sign(s(1:44100*10)))
+>> soundsc(sign(s(1:44100*10)),fs)
+>> soundsc((s(1:44100*10)),fs)
+>> s1 = ceil(s(1:44100*10)*4);
+>> plot(s1)
+>> soundsc(s1,44100)
+>> sound(s1,44100)
+>> 
